@@ -1,0 +1,16 @@
+{
+  "name": "@tally-bridge/scripts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx capture-fixtures.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@tally-bridge/tally-client": "workspace:*"
+  },
+  "devDependencies": {
+    "@tally-bridge/mock-tally": "workspace:*"
+  }
+}
