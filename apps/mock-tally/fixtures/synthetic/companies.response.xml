@@ -1,0 +1,32 @@
+<ENVELOPE>
+ <HEADER>
+  <VERSION>1</VERSION>
+  <STATUS>1</STATUS>
+ </HEADER>
+ <BODY>
+  <DESC>
+  </DESC>
+  <DATA>
+   <COLLECTION>
+    <COMPANY NAME="Charliee TEST (Synthetic)" RESERVEDNAME="">
+     <NAME TYPE="String">Charliee TEST (Synthetic)</NAME>
+     <GUID TYPE="String">a1b2c3d4-0000-4000-8000-000000000001</GUID>
+     <STARTINGFROM TYPE="Date">20260401</STARTINGFROM>
+     <BOOKSFROM TYPE="Date">20260401</BOOKSFROM>
+     <ENDINGAT TYPE="Date">20270331</ENDINGAT>
+     <TBISACTIVE TYPE="Logical">Yes</TBISACTIVE>
+     <TBVERSION TYPE="String">&#4; TallyPrime Synthetic</TBVERSION>
+    </COMPANY>
+    <COMPANY NAME="Ram &amp; Shyam&apos;s Foods (Synthetic)" RESERVEDNAME="">
+     <NAME TYPE="String">Ram &amp; Shyam&apos;s Foods (Synthetic)</NAME>
+     <GUID TYPE="String">a1b2c3d4-0000-4000-8000-000000000002</GUID>
+     <STARTINGFROM TYPE="Date">20250401</STARTINGFROM>
+     <BOOKSFROM TYPE="Date">20250401</BOOKSFROM>
+     <ENDINGAT TYPE="Date"></ENDINGAT>
+     <TBISACTIVE TYPE="Logical">No</TBISACTIVE>
+     <TBVERSION TYPE="String">&#4; TallyPrime Synthetic</TBVERSION>
+    </COMPANY>
+   </COLLECTION>
+  </DATA>
+ </BODY>
+</ENVELOPE>

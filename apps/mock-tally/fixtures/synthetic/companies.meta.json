@@ -1,0 +1,6 @@
+{
+  "name": "companies",
+  "match": { "tallyRequest": "Export", "type": "Collection", "id": "TBCompanies" },
+  "synthetic": true,
+  "notes": "Loaded companies via inline TDL collection. Includes &#4; and an apostrophe/ampersand name to exercise sanitising and escaping. VERIFY-ON-TALLY: element names and COMPUTE results."
+}
