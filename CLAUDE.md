@@ -2,7 +2,8 @@
 
 Production tool for Baijay International Pvt Ltd (brand: Charliee). Lets Claude **read** TallyPrime
 data and **propose** accounting entries that a human approves before anything reaches the books.
-Full brief: [`docs/SPEC.md`](docs/SPEC.md). Items still unconfirmed against real Tally: [`docs/VERIFY.md`](docs/VERIFY.md).
+Full brief: [`docs/SPEC.md`](docs/SPEC.md). Business decisions (price levels, godowns, batches, PO
+linking, etc.): [`docs/DECISIONS.md`](docs/DECISIONS.md). Items still unconfirmed against real Tally: [`docs/VERIFY.md`](docs/VERIFY.md).
 
 ## Non-negotiable safety rules
 
@@ -30,7 +31,8 @@ Full brief: [`docs/SPEC.md`](docs/SPEC.md). Items still unconfirmed against real
 8. **Invoices go in as Optional vouchers** unless config explicitly allows direct posting for that type.
 9. **Append-only audit log** of everything: tool calls, Claude's raw inputs, validation results,
    approver, XML sent, Tally's raw response, verification result.
-10. **Test company only** for development and integration testing. Never the live company.
+10. **Test company only** for development and integration testing. Never the live company
+    (`Baijay International Private Limited`).
     (`scripts/capture-fixtures.ts` refuses company names without "TEST" unless explicitly confirmed.)
 
 ## Working conventions

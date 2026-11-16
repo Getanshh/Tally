@@ -1,7 +1,7 @@
 # VERIFY-ON-TALLY checklist
 
 Everything below was written from general TallyPrime knowledge and has **not** been confirmed
-against your real Tally. Each item is marked `// VERIFY-ON-TALLY` in the code. Fixtures captured
+against your real Tally (TallyPrime 6). Each item is marked `// VERIFY-ON-TALLY` in the code. Fixtures captured
 from the TEST company (see `SETUP-WINDOWS.md` → step 5) should settle most of them.
 
 Status legend: ⬜ unverified · ✅ confirmed · ❌ wrong (fix in code, then tick)

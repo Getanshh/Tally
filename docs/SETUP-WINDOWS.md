@@ -18,7 +18,7 @@ All development and fixture capture happens on a copy, never on the live company
 2. Restore it into a **separate data folder**, for example `D:\TallyData-TEST`
    (**Data → Restore**, choose the new folder as destination).
 3. Open the restored copy and rename it so it is unmistakable:
-   **Alt+K (Company) → Alter** → change the name to e.g. `Charliee TEST`.
+   **Alt+K (Company) → Alter** → change the name to e.g. `Baijay International Private Limited TEST`.
    The capture script refuses to run against a company whose name does not contain `TEST`.
 4. Keep the live and test data folders separate so they can't be mixed up.
 
@@ -80,21 +80,42 @@ pnpm test
 The capture script only **reads** from Tally (every request is checked to be an Export before it
 is sent). It records Tally's real answers so the mock server and tests can replay them.
 
-### 5a. Prepare the TEST company (recommended, ~15 minutes)
+### 5a. Prepare the TEST company (~30 minutes)
 
-To settle as many `VERIFY-ON-TALLY` items as possible, make sure the TEST company contains, in
-one date range (e.g. one month):
+Do all of this in the **TEST** company only. Put every voucher in **one month** so a single capture
+picks them all up. Give each one a recognisable **Reference** such as `SAMPLE-01`, `SAMPLE-02` and so on.
 
-- [ ] one **Purchase Order**
-- [ ] one **Sales** invoice to a Gujarat party (CGST + SGST)
-- [ ] one **Sales** invoice to an out-of-state party (IGST)
-- [ ] one invoice whose GST total has odd paise (to see round-off)
-- [ ] one invoice with items at two different GST rates
-- [ ] one **Purchase** invoice, ideally against the Purchase Order above
-- [ ] one **Optional** voucher (any type)
-- [ ] one voucher using a **batch/expiry-tracked** item, if you use batches
-- [ ] one voucher using a non-main **godown**, if you use godowns
-- [ ] a party whose name contains `&` or an apostrophe (e.g. `Ram & Sons`, `Shree Ram's`)
+**Masters and settings first**
+
+- [ ] **Batches:** F11 (Features) → Inventory → turn on batch-wise details, expiry dates and
+      manufacturing dates. Then on **2 items**, set _Maintain in batches = Yes_ and _Track
+      expiry = Yes_. (TEST only. Turning batches on in the live company is a separate decision.)
+- [ ] **Price levels:** check at least **2 price levels** exist, each with a price list for a few
+      items. Assign party A to one level and party B to the other. Leave party C with **no** price level.
+- [ ] **Standard selling rate** on the items party C will buy.
+- [ ] **Parties:** at least one **outside Gujarat**, with a GSTIN from another state, and one whose
+      name contains `&` or an apostrophe (e.g. `Ram & Sons`, `Shree Ram's`).
+- [ ] **Items:** at least one at **5% GST** and one at **12% or 18%**.
+- [ ] **Godowns:** at least 2 in use.
+
+**Vouchers**
+
+| Ref       | Voucher                                                                                                                | What it shows us                                    |
+| --------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| SAMPLE-01 | **Purchase Order**: one supplier, 2 items, quantity 100 each, with a due date                                          | PO structure and order tracking                     |
+| SAMPLE-02 | **Purchase** against SAMPLE-01, receiving only **60** of item 1, one batch item with batch no. + expiry, into godown 2 | PO linking, **partial receipt**, batch/expiry XML   |
+| SAMPLE-03 | **Purchase** against SAMPLE-01 for the remaining **40** + item 2                                                       | PO closed by a second receipt                       |
+| SAMPLE-04 | **Sales** to party A (Gujarat, price level 1), from godown 2                                                           | CGST + SGST, price-level rate, godown               |
+| SAMPLE-05 | **Sales** to the **out-of-state** party                                                                                | IGST                                                |
+| SAMPLE-06 | **Sales** to party C (**no price level**)                                                                              | Standard-rate fallback                              |
+| SAMPLE-07 | **Sales** with **5% and 18% items together** and quantities that give **odd paise**                                    | Mixed rates, **round-off**                          |
+| SAMPLE-08 | **Sales** of a **batch** item, picking a specific batch                                                                | Batch selection on sales                            |
+| SAMPLE-09 | **Sales** to the `&` / apostrophe party, saved as an **Optional** voucher                                              | Optional flag, escaping                             |
+| SAMPLE-10 | **Purchase** saved as **Optional**                                                                                     | Optional flag on purchases                          |
+| SAMPLE-11 | **Receipt** from party A part-paying SAMPLE-04 (bill-wise _Agst Ref_)                                                  | Bills outstanding and ageing                        |
+| SAMPLE-12 | Any **Sales**, then **cancel** it                                                                                      | How cancelled vouchers appear (we must ignore them) |
+
+Note each sample's voucher number and total. I'll check that the captured XML says the same.
 
 ### 5b. Run the capture
 
@@ -102,7 +123,7 @@ With TallyPrime running and the TEST company **open**:
 
 ```powershell
 cd C:\tally-bridge
-pnpm capture-fixtures --company "Charliee TEST" --from 2026-10-01 --to 2026-10-31
+pnpm capture-fixtures --company "Baijay International Private Limited TEST" --from 2026-10-01 --to 2026-10-31
 ```
 
 - `--company` must match the name in Tally **exactly**.
@@ -141,7 +162,7 @@ coming. File: `%APPDATA%\Claude\claude_desktop_config.json`
       "env": {
         "TALLY_HOST": "127.0.0.1",
         "TALLY_PORT": "9000",
-        "DEFAULT_COMPANY": "Charliee TEST",
+        "DEFAULT_COMPANY": "Baijay International Private Limited TEST",
         "DB_PATH": "C:\\tally-bridge\\data\\tally-bridge.sqlite"
       }
     }
