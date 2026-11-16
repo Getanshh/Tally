@@ -1,0 +1,7 @@
+node_modules
+pnpm-lock.yaml
+dist
+coverage
+apps/mock-tally/fixtures
+captured-fixtures
+docs/SPEC.md

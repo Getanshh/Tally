@@ -1,0 +1,15 @@
+node_modules/
+dist/
+out/
+coverage/
+*.log
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+# Raw captures from a real Tally company stay local until reviewed (see docs/SETUP-WINDOWS.md)
+captured-fixtures/
+.DS_Store
