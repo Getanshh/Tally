@@ -1,0 +1,6 @@
+{
+  "name": "banner",
+  "method": "GET",
+  "synthetic": true,
+  "notes": "Plain GET on port 9000. VERIFY-ON-TALLY: exact banner text."
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@tally-bridge/mock-tally",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Fake Tally XML server that replays recorded fixtures, for tests and local development",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@tally-bridge/tally-client": "workspace:*",
+    "zod": "^4.1.0"
+  }
+}
